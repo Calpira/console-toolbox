@@ -9,6 +9,8 @@
 
 Script `.bat` para Windows 10 que repara problemas comunes de conexión y diagnostica dónde está el problema.
 
+> Este proyecto nació para resolver un problema puntual de **conflictos de IP en una red de trabajo**, y también como práctica de scripting en Batch y PowerShell. Realiza cambios en la configuración de red del equipo, por eso se recomienda revisar el código antes de ejecutarlo.
+
 ## Qué hace
 
 1. **Pide permisos de administrador** automáticamente (se relanza elevado).
