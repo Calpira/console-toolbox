@@ -1,9 +1,9 @@
 # apt-cleanup
 
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
 ![Status](https://img.shields.io/badge/learning%20project-blue?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/Calpira/apt-cleanup?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
+
 
 
 Script de limpieza para sistemas basados en Debian/Ubuntu (probado en Linux Mint).
