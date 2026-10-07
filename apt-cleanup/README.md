@@ -30,7 +30,7 @@ El script ejecuta de manera secuencial las siguientes tareas de administración 
 - Permisos de administrador (`sudo`)
 
   
-## Descarga
+## Descarga y uso
  
 Descargá solo el script:
  
@@ -42,9 +42,7 @@ chmod +x apt-cleanup.sh
 > También podés abrir el archivo en GitHub, tocar **Raw** y guardarlo con clic derecho → *Guardar como*.
  
  
-## Uso
-
- desde la misma carpeta donde lo descargaste
+desde la misma carpeta donde lo descargaste:
 ```
 sudo ./apt-cleanup.sh
 ```
