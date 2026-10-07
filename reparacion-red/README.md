@@ -26,13 +26,18 @@ Script `.bat` para Windows 10 que repara problemas comunes de conexión y diagno
 11. **Guarda un log** (`log_red.txt`) junto al script, con la fecha, el tipo de IP (fija o dinámica) y el diagnóstico de antes y después.
 
 
-## Uso
+## Descarga y uso
 
-1. Descargar `reparar_red.bat`.
-2. Ejecutarlo con doble clic.
-3. Aceptar el aviso de Windows que pide permisos de administrador.
-4. Esperar a que termine y leer el `RESULTADO` final.
-5. Presionar una tecla para cerrar la ventana.
+Descargá solo el script:
+
+```
+curl -O https://raw.githubusercontent.com/Calpira/console-toolbox/main/red-windows/reparar_red.bat
+```
+
+1. Ejecutarlo con doble clic.
+2. Aceptar el aviso de Windows que pide permisos de administrador.
+3. Esperar a que termine y leer el `RESULTADO` final.
+4. Presionar una tecla para cerrar la ventana.
 
 
 ## Diagnóstico
