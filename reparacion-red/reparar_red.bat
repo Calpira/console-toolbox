@@ -20,6 +20,7 @@ echo.
 
 echo [1/11] Estado de red anterior
 call :diag "Estado anterior"
+call :pruebas antes
 
 echo [2/11] Habilitando adaptadores
 powershell -NoProfile -Command "Get-NetAdapter -Physical | Where-Object {$_.Status -eq 'Disabled'} | Enable-NetAdapter -Confirm:$false"
@@ -72,7 +73,8 @@ echo  ------------------------------------------
 echo    Estado final y pruebas
 echo  ------------------------------------------
 call :diag "Estado final"
-call :pruebas
+call :pruebas despues
+call :log
 
 echo.
 echo  ==========================================
@@ -89,6 +91,10 @@ echo.
 goto :eof
 
 :pruebas
-echo -- Pruebas de conexion --
-powershell -NoProfile -Command "$c = Get-CimInstance Win32_NetworkAdapterConfiguration -Filter 'IPEnabled=true'; $ip = @($c.IPAddress | Where-Object {$_ -match '^\d+\.\d+\.\d+\.\d+$'}); $gw = @($c.DefaultIPGateway)[0]; $gwOk = $false; if ($gw) { $gwOk = [bool](Test-Connection $gw -Count 2 -Quiet -ErrorAction SilentlyContinue) }; $net = [bool](Test-Connection 8.8.8.8 -Count 2 -Quiet -ErrorAction SilentlyContinue); $dns = [bool](Resolve-DnsName google.com -ErrorAction SilentlyContinue); Write-Host ('Gateway: ' + $(if (-not $gw) {'sin gateway'} elseif ($gwOk) {'ok'} else {'no responde'})); Write-Host ('Internet: ' + $(if ($net) {'ok'} else {'no responde'})); Write-Host ('DNS: ' + $(if ($dns) {'ok'} else {'falla'})); if (-not $ip) { $res = 'SIN IP' } elseif ($ip | Where-Object {$_ -like '169.254.*'}) { $res = 'IP 169.254' } elseif (-not $gw) { $res = 'Tiene IP pero no tiene gateway' } elseif (-not $gwOk) { $res = 'No responde el gateway' } elseif (-not $net) { $res = 'Llega al gateway pero no sale a internet' } elseif (-not $dns) { $res = 'Hay internet pero falla DNS' } else { $res = 'OK: conexion funcionando' }; Write-Host ''; Write-Host ('RESULTADO: ' + $res); $p = (Get-NetAdapter -Physical).ifIndex; $fija = [bool](Get-NetIPInterface -AddressFamily IPv4 | Where-Object {$p -contains $_.ifIndex -and $_.Dhcp -eq 'Disabled'}); $tipo = $(if ($fija) {'IP fija'} else {'IP dinamica'}); Add-Content -Path '%~dp0log_red.txt' -Value ((Get-Date -Format 'yyyy-MM-dd HH:mm') + ' | ' + $tipo + ' | ' + $res) -ErrorAction SilentlyContinue"
+echo -- Pruebas de conexion: %~1 --
+powershell -NoProfile -Command "$modo = '%~1'; $c = Get-CimInstance Win32_NetworkAdapterConfiguration -Filter 'IPEnabled=true'; $ip = @($c.IPAddress | Where-Object {$_ -match '^\d+\.\d+\.\d+\.\d+$'}); $gw = @($c.DefaultIPGateway)[0]; $gwOk = $false; if ($gw) { $gwOk = [bool](Test-Connection $gw -Count 2 -Quiet -ErrorAction SilentlyContinue) }; $net = [bool](Test-Connection 8.8.8.8 -Count 2 -Quiet -ErrorAction SilentlyContinue); $dns = [bool](Resolve-DnsName google.com -ErrorAction SilentlyContinue); Write-Host ('Gateway: ' + $(if (-not $gw) {'sin gateway'} elseif ($gwOk) {'ok'} else {'no responde'})); Write-Host ('Internet: ' + $(if ($net) {'ok'} else {'no responde'})); Write-Host ('DNS: ' + $(if ($dns) {'ok'} else {'falla'})); if (-not $ip) { $res = 'SIN IP' } elseif ($ip | Where-Object {$_ -like '169.254.*'}) { $res = 'IP 169.254' } elseif (-not $gw) { $res = 'Tiene IP pero no tiene gateway' } elseif (-not $gwOk) { $res = 'No responde el gateway' } elseif (-not $net) { $res = 'Llega al gateway pero no sale a internet' } elseif (-not $dns) { $res = 'Hay internet pero falla DNS' } else { $res = 'OK: conexion funcionando' }; Write-Host ''; Write-Host ($(if ($modo -eq 'antes') {'DIAGNOSTICO INICIAL: '} else {'RESULTADO: '}) + $res); Set-Content -Path (Join-Path $env:TEMP ('red_' + $modo + '.txt')) -Value $res -ErrorAction SilentlyContinue"
+goto :eof
+
+:log
+powershell -NoProfile -Command "$p = (Get-NetAdapter -Physical).ifIndex; $fija = [bool](Get-NetIPInterface -AddressFamily IPv4 | Where-Object {$p -contains $_.ifIndex -and $_.Dhcp -eq 'Disabled'}); $tipo = $(if ($fija) {'IP fija'} else {'IP dinamica'}); $a = Join-Path $env:TEMP 'red_antes.txt'; $d = Join-Path $env:TEMP 'red_despues.txt'; $antes = $(if (Test-Path $a) {Get-Content $a | Select-Object -First 1} else {'sin dato'}); $despues = $(if (Test-Path $d) {Get-Content $d | Select-Object -First 1} else {'sin dato'}); Add-Content -Path '%~dp0log_red.txt' -Value ((Get-Date -Format 'yyyy-MM-dd HH:mm') + ' | ' + $tipo + ' | Antes: ' + $antes + ' | Despues: ' + $despues) -ErrorAction SilentlyContinue; Remove-Item $a, $d -ErrorAction SilentlyContinue"
 goto :eof
