@@ -1,5 +1,11 @@
 # Reparación y diagnóstico de red
 
+![Batch](https://img.shields.io/badge/Batch-4D4D4D?style=for-the-badge&logo=windowsterminal&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows%2010-0078D6?style=for-the-badge)
+![Status](https://img.shields.io/badge/learning%20project-blue?style=for-the-badge)
+
+
 Script `.bat` para Windows 10 que repara problemas comunes de conexión y diagnostica dónde está el problema.
 
 ## Qué hace
