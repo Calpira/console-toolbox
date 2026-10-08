@@ -33,6 +33,7 @@ Descargá solo el script:
 ```
 curl -O https://raw.githubusercontent.com/Calpira/console-toolbox/main/red-windows/reparar_red.bat
 ```
+> También podés abrir el archivo en GitHub, tocar **Raw** y guardarlo con clic derecho → *Guardar como*.
 
 1. Ejecutarlo con doble clic.
 2. Aceptar el aviso de Windows que pide permisos de administrador.
