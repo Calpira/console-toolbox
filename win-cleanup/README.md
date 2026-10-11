@@ -24,19 +24,13 @@ El script ejecuta de manera secuencial las siguientes tareas de mantenimiento:
 10. **Ejecuta el Liberador de espacio en disco** (`cleanmgr /sagerun:1`) en modo silencioso.
 11. **Muestra el espacio libre final** y cuántos MB se liberaron.
 
-## Requisitos
-
-- Windows 10 o Windows 11
-- PowerShell disponible (viene por defecto)
-- Permisos de administrador (el script los pide solo)
-- `dism`, `sfc`, `cleanmgr`, `wevtutil` (todos vienen con Windows)
 
 ## Descarga y uso
 
-Descargá solo el script:  -------------------------------------------------
-
-
-
+Descargá solo el script:  
+```
+curl -O https://raw.githubusercontent.com/Calpira/console-toolbox/refs/heads/main/win-cleanup/win-cleanup.bat
+```
 > También podés abrir el archivo en GitHub, tocar **Raw** y guardarlo con clic derecho → *Guardar como*.
 
 1. Ejecutarlo con doble clic.
