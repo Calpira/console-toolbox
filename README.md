@@ -3,7 +3,7 @@
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Windows][windows-badge]
 ![Status](https://img.shields.io/badge/learning%20project-blue?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/Calpira/console-toolbox?style=for-the-badge)
+
 
 Monorepositorio para guardar y ordenar utilidades de consola para Linux y Windows.
 
