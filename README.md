@@ -24,7 +24,7 @@ Cada herramienta tiene su propia carpeta, con un README que explica en detalle q
 | Herramienta | Qué hace | Descarga |
 |---|---|---|
 | [reparar_red](reparacion-red/) | Repara y diagnostica problemas comunes de conexión de red. | [reparar_red.bat](https://raw.githubusercontent.com/Calpira/console-toolbox/main/reparacion-red/reparar_red.bat) |
-
+| [win-cleanup](win-cleanup/) | Limpieza de cachés, temporales, papelera y archivos residuales del sistema y usuarios. | [win-cleanup.bat](https://raw.githubusercontent.com/Calpira/console-toolbox/refs/heads/main/win-cleanup/win-cleanup.bat) |
 
 ## Cómo descargar un script
 
